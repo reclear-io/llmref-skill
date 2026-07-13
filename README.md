@@ -16,10 +16,21 @@ key, or install required.
 
 ## Install
 
-The repository root *is* the skill (`SKILL.md` lives at the top level), so
-installing is just placing it in a directory Claude Code discovers.
+The repository root *is* the skill (`SKILL.md` lives at the top level, with
+`name` + `description` frontmatter), so any tool that installs skills from a
+GitHub repo can pick it up directly.
 
-### Quick install (recommended)
+### With the `skills` CLI (recommended)
+
+Works across Claude Code and every other
+[supported agent](https://github.com/vercel-labs/skills) — it resolves the root
+`SKILL.md` and installs it into the right skills directory for you:
+
+```sh
+npx skills add https://github.com/reclear-io/llmref-skill
+```
+
+### With git
 
 ```sh
 # Personal — available in every project
