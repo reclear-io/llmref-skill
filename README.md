@@ -11,6 +11,9 @@ model happened to absorb. It prefers the `llmref` MCP server when connected, and
 otherwise falls back to plain `curl` against the public API — no account, API
 key, or install required.
 
+Semantic search is temporarily unavailable on the hosted service. The skill can
+still resolve versions, read available files and follow official source links.
+
 > This repo is the packaged, installable form of the skill that lives at
 > [`reclear-io/llmref/integrations/claude-skill`](https://github.com/reclear-io/llmref/tree/main/integrations/claude-skill).
 
@@ -56,7 +59,7 @@ LLMREF_SKILL_DIR=.claude/skills/llmref \
 
 ### Manual copy
 
-Download and drop the `SKILL.md` + `references/` into
+Download and copy `SKILL.md`, `references/` and `scripts/` into
 `~/.claude/skills/llmref/` (or `.claude/skills/llmref/`) yourself. Any layout
 where Claude Code finds `<skills-dir>/llmref/SKILL.md` works.
 
@@ -104,6 +107,7 @@ rm -rf ~/.claude/skills/llmref
 |---|---|
 | `SKILL.md` | Trigger conditions, surface priority (MCP → curl → SDK/CLI), and the discover → resolve → read/search workflow. |
 | `references/api-reference.md` | Full HTTP API, MCP tools, `@llmref/cli`, and `@llmref/sdk` surface. |
+| `scripts/report_missing_docs.py` | Optional detached HTTP helper for public documentation hints when MCP is unavailable. |
 | `install.sh` | Clones (or copies) the skill into your Claude skills directory. |
 
 ## Links
@@ -124,3 +128,8 @@ conversation text, code, credentials and private URLs are excluded. Reports are
 deduplicated and retained privately for 90 days after their last observation.
 Tell the agent not to report to opt out; `LLMREF_DISABLE_REPORTING=1` disables the
 HTTP helper. Host permissions always apply.
+
+LLM Reference investigates hints separately from your task. A report is not a
+guarantee of publication. See
+[How documentation is added and updated](https://llmref.org/explanation/discovery-and-updates/)
+for automatic discovery, updates, review requirements and availability.
