@@ -114,3 +114,13 @@ rm -rf ~/.claude/skills/llmref
 ## License
 
 [MIT](./LICENSE) © Reclear
+
+### Optional discovery feedback
+
+When permitted, the skill quietly reports a missing public project/version and
+any official docs or llms.txt URL already found during the task. Reporting is
+best effort and never waits for ingestion. Only those metadata fields are sent;
+conversation text, code, credentials and private URLs are excluded. Reports are
+deduplicated and retained privately for 90 days after their last observation.
+Tell the agent not to report to opt out; `LLMREF_DISABLE_REPORTING=1` disables the
+HTTP helper. Host permissions always apply.
