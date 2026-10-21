@@ -37,9 +37,11 @@ class ReportingTests(unittest.TestCase):
 
     def test_real_http_delivery_and_no_redirect_forwarding(self):
         received = []
+        request_headers = []
         class Handler(BaseHTTPRequestHandler):
             def do_POST(self):
                 received.append((self.path, json.loads(self.rfile.read(int(self.headers['content-length'])))))
+                request_headers.append((self.headers.get('User-Agent'), self.headers.get('Accept')))
                 if self.path == '/redirect':
                     self.send_response(307); self.send_header('Location', '/leak'); self.end_headers()
                 else:
@@ -57,6 +59,7 @@ class ReportingTests(unittest.TestCase):
             server.shutdown(); server.server_close(); thread.join()
         self.assertEqual([path for path, _ in received], ['/submit', '/redirect'])
         self.assertTrue(all(body == payload for _, body in received))
+        self.assertEqual(request_headers, [('llmref-skill/0.1 (+https://llmref.org)', 'application/json')] * 2)
 
 
 if __name__ == '__main__':
