@@ -5,8 +5,8 @@ teaches an assistant to fetch **version-pinned** documentation for any library,
 framework, SDK, API, or CLI from the [LLM Reference](https://llmref.org) registry
 (`api.llmref.org`) instead of relying on training data.
 
-The point is version-correctness: it resolves the exact version a project uses
-and reads *that* snapshot's docs, so answers don't drift to whatever version the
+The skill checks release evidence, resolves the available documentation, and
+reuses immutable snapshot pins when available, so answers don't drift to whatever version the
 model happened to absorb. It prefers the `llmref` MCP server when connected, and
 otherwise falls back to plain `curl` against the public API — no account, API
 key, or install required.
