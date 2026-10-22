@@ -11,9 +11,6 @@ model happened to absorb. It prefers the `llmref` MCP server when connected, and
 otherwise falls back to plain `curl` against the public API — no account, API
 key, or install required.
 
-Semantic search is temporarily unavailable on the hosted service. The skill can
-still resolve versions, read available files and follow official source links.
-
 > This repo is the packaged, installable form of the skill that lives at
 > [`reclear-io/llmref/integrations/claude-skill`](https://github.com/reclear-io/llmref/tree/main/integrations/claude-skill).
 
